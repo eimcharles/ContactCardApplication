@@ -23,7 +23,7 @@ public class Contact {
     private String email;
     private String title;
     private String phoneNumber;
-    private String city;
+    private String location;
     private String status;
     private String photoURL;
 
@@ -31,12 +31,12 @@ public class Contact {
      *       Parametrized Constructor
      * */
 
-    public Contact(String name, String email, String title, String phoneNumber, String city, String status, String photoURL) {
+    public Contact(String name, String email, String title, String phoneNumber, String location, String status, String photoURL) {
         this.name = name;
         this.email = email;
         this.title = title;
         this.phoneNumber = phoneNumber;
-        this.city = city;
+        this.location = location;
         this.status = status;
         this.photoURL = photoURL;
     }
@@ -68,8 +68,8 @@ public class Contact {
         this.title = title;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setLocation(String city) {
+        this.location = city;
     }
 
     public void setPhoneNumber(String phoneNumber) {
@@ -108,8 +108,8 @@ public class Contact {
         return email;
     }
 
-    public String getCity() {
-        return city;
+    public String getLocation() {
+        return location;
     }
 
     public String getPhoneNumber() {
@@ -130,12 +130,12 @@ public class Contact {
         Contact contact = (Contact) o;
         return Objects.equals(id, contact.id) && Objects.equals(name, contact.name) &&
                 Objects.equals(email, contact.email) && Objects.equals(title, contact.title) &&
-                Objects.equals(phoneNumber, contact.phoneNumber) && Objects.equals(city, contact.city) &&
+                Objects.equals(phoneNumber, contact.phoneNumber) && Objects.equals(location, contact.location) &&
                 Objects.equals(status, contact.status) && Objects.equals(photoURL, contact.photoURL);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, email, title, phoneNumber, city, status, photoURL);
+        return Objects.hash(id, name, email, title, phoneNumber, location, status, photoURL);
     }
 }
