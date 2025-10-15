@@ -1,0 +1,50 @@
+# Root namespace for all Spring Boot configuration properties.
+spring:
+  application:
+    name: ContactCardApplication
+
+# Defines database connection properties for JDBC.
+  datasource:
+    url: jdbc:mysql://localhost:3306/ContactCardApplication
+    username: root
+    password: Kostrz_271108$
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  # Hibernate Configuration
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    generate-ddl: true
+    # Logs all SQL statements Hibernate executes to the console
+    show-sql: true
+    hibernate:
+      # Modifies existing tables to match your entities
+      ddl-auto: update
+    properties:
+      hibernate:
+        globally_quoted_identifiers: true
+        # Ensures SQL is generated using MySQL conventions
+        dialect: org.hibernate.dialect.MySQLDialect
+        # Formats SQL logs to make them easier to read
+        format_sql: true
+
+# Configures file upload (multipart request) handling in Spring.
+# Sets the maximum allowed size for a single uploaded file (1 GB).
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 1000MB
+      max-request-size: 1000MB
+
+# Configures asynchronous request handling.
+  mvc:
+    async:
+      request-timeout: 3600000  # 1 hour in milliseconds
+
+server:
+  port: 8080
+  error:
+    path: /user/error
+    whitelabel:
+      enabled: false
+    #  Ensures that error responses include the error message** in the HTTP response body
+    include-message: always
