@@ -33,4 +33,4 @@ build/
 .vscode/
 
 # Ignore Spring Boot configuration
-backend/src/main/resources/application.yml
+/backend/src/main/resources/application.yml
