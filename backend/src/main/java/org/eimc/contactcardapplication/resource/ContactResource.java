@@ -6,10 +6,7 @@ package org.eimc.contactcardapplication.resource;
 import org.eimc.contactcardapplication.domain.Contact;
 import org.eimc.contactcardapplication.service.ContactService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 
@@ -26,5 +23,10 @@ public class ContactResource {
     @PostMapping
     public ResponseEntity<Contact> createContact(@RequestBody Contact contact){
         return ResponseEntity.created(URI.create("/contacts/userId/")).body(contactService.createContact(contact));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Contact> getContact(@PathVariable(value = "id") Long id) {
+        return ResponseEntity.ok().body(contactService.getContactById(id));
     }
 }
