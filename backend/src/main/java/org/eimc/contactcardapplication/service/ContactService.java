@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-
 /*
 *   Service Class (Business Layer)
 *
@@ -39,6 +38,31 @@ public class ContactService {
 
     public Contact getContactById(long id) {
         return contactRepository.findById(id).orElseThrow(() -> new RuntimeException("Contact not found"));
+    }
+
+    public void updateContactById(Long id, Contact contact) {
+
+        Contact findContactByIdExists = contactRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Invalid entity primary key id: " + id + " not found"));
+
+        Optional<Contact> contactExists = contactRepository
+                .findByNameAndEmailAndPhoneNumber(
+                        contact.getName(),
+                        contact.getEmail(),
+                        contact.getPhoneNumber());
+
+        if (contactExists.isPresent()) {
+            throw new RuntimeException("Contact with the same name, email, and phone number already exists.");
+        }
+
+        findContactByIdExists.setName(contact.getName());
+        findContactByIdExists.setEmail(contact.getEmail());
+        findContactByIdExists.setTitle(contact.getTitle());
+        findContactByIdExists.setPhoneNumber(contact.getPhoneNumber());
+        findContactByIdExists.setLocation(contact.getLocation());
+        findContactByIdExists.setStatus(contact.getStatus());
+        findContactByIdExists.setPhotoURL(contact.getPhotoURL());
+        contactRepository.save(findContactByIdExists);
     }
 
 }
