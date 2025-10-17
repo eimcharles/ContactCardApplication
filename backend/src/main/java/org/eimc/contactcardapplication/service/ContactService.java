@@ -65,4 +65,14 @@ public class ContactService {
         contactRepository.save(findContactByIdExists);
     }
 
+    public void deleteContactById(Long id) {
+        boolean findContactByIdExists = contactRepository.existsById(id);
+        if (!findContactByIdExists) {
+            throw new RuntimeException("Invalid contact id: " + id);
+        }
+
+        contactRepository.deleteById(id);
+    }
+
+
 }
