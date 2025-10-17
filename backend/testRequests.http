@@ -12,3 +12,6 @@ Content-Type: application/json
 
 ### GET
 GET  http://localhost:8080/contacts/1
+
+### DELETE
+DELETE http://localhost:8080/contacts/1
